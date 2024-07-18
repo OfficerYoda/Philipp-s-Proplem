@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90a5d9df39c08e4db941e96231b30ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSize: {x: 0, y: 4}
+  mapSize: {x: 16, y: 9}
   pointPrefab: {fileID: 1583833365851021157, guid: faa6623b3271ef8438d4de5b40d2f52c, type: 3}
   spacing: 1
 --- !u!4 &1174516477
