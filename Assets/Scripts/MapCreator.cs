@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace de.officeryoda {
@@ -45,18 +47,20 @@ namespace de.officeryoda {
             for(int x = 0; x < mapSize.x; x++) {
                 for(int y = 0; y < mapSize.y; y++) {
                     MapPoint point = mapPoints[x, y];
-                    point.neighbours = new MapPoint[8];
+                    HashSet<MapPoint> neighbours = new();
 
                     for(int i = 0; i < 8; i++) {
                         int nx = x + dx[i];
                         int ny = y + dy[i];
 
                         if(nx >= 0 && nx < mapSize.x && ny >= 0 && ny < mapSize.y) {
-                            point.neighbours[i] = mapPoints[nx, ny];
+                            neighbours.Add(mapPoints[nx, ny]);
                         } else {
-                            point.neighbours[i] = point; // Refer to itself if out of bounds
+                            neighbours.Add(point);
                         }
                     }
+
+                    point.neighbours = neighbours.ToList();
                 }
             }
         }
