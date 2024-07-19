@@ -10,7 +10,14 @@ namespace de.officeryoda {
         public Color color;
         private SpriteRenderer rend;
 
-        public List<MapPoint> neighbours = new();
+        /*
+         * 6 5 4
+         * 7 x 3
+         * 0 1 2
+         * for neighbours and neighbour Points
+         */
+        public MapPoint[] neighbours = new MapPoint[8];
+        public Vector2[] neighbourPoints = new Vector2[8];
         public bool drawGizmos;
 
         public List<Vector3> borderPoints = new();
@@ -18,6 +25,9 @@ namespace de.officeryoda {
 
         private void Start() {
             rend = GetComponent<SpriteRenderer>();
+            //Color[] colors = { Color.red, Color.green, Color.blue, Color.cyan };
+            //color = colors[Random.Range(0, 4)];
+            //rend.color = color;
         }
 
         [EditorCools.Button]
@@ -27,7 +37,7 @@ namespace de.officeryoda {
             ContributeToBoundary(ref boundPoints, ref seenPoints);
             borderPoints = boundPoints.ToList();
         }
-        
+
         // works like flood fill
         private void ContributeToBoundary(ref HashSet<Vector3> borderPoints, ref HashSet<MapPoint> seenPoints) {
             // Finding possible edge points
@@ -59,27 +69,21 @@ namespace de.officeryoda {
 
         private void OnDrawGizmos() {
             Gizmos.color = color;
-            //foreach(Vector3 point in borderCandidate) {
-            //    Gizmos.DrawSphere(point, 0.05f);
-            //}
-            foreach(Vector3 point in borderPoints) {
+            for(int i = 0; i < borderPoints.Count; i++) {
+                Vector3 point = borderPoints[i];
                 Gizmos.DrawSphere(point, 0.05f);
             }
 
-            //if(!drawGizmos) return;
-
-            //Gizmos.color = color;
-            //foreach(MapPoint neighbour in neighbours) {
-            //    Vector2 center = (transform.position + neighbour.transform.position) / 2f;
-            //    Gizmos.DrawSphere(center, 0.05f);
-            //}
+            Gizmos.color = Color.white;
+            foreach(var neighbour in neighbours) {
+                Gizmos.DrawSphere(neighbour.transform.position, 0.05f);
+            }
         }
 
         private void OnDrawGizmosSelected() {
             Gizmos.color = color;
-            foreach(MapPoint neighbour in neighbours) {
-                Vector2 center = (transform.position + neighbour.transform.position) / 2f;
-                Gizmos.DrawSphere(center, 0.05f);
+            foreach(Vector2 point in neighbourPoints) {
+                Gizmos.DrawSphere(point, 0.05f);
             }
         }
     }

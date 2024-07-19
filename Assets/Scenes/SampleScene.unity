@@ -154,7 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0.5019608, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &131639260
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -253,7 +255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &243049760
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -352,7 +356,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &258288180
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -451,7 +457,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &297708414
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -550,7 +558,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 1, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &329192266
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -649,7 +659,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 1, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &364777002
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -748,7 +760,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 1, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &466028538
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -984,7 +998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &528114046
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1083,7 +1099,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &607878808
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1264,7 +1282,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 1, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &809773697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1363,7 +1383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &891707437
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1462,7 +1484,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &918308799
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1561,7 +1585,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 1, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &1070360902
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1727,7 +1753,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &1304541813
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1826,7 +1854,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &1331248982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1925,7 +1955,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &1675167128
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2024,7 +2056,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &1813969139
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2123,7 +2157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &1886281355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2222,7 +2258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 1, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &1955869834
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2321,7 +2359,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  neighbours: []
   drawGizmos: 0
+  borderPoints: []
 --- !u!212 &2046928898
 SpriteRenderer:
   m_ObjectHideFlags: 0

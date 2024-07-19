@@ -9,7 +9,7 @@ namespace de.officeryoda {
 
         [SerializeField] private MapPoint pointPrefab;
         [SerializeField] private float spacing;
-
+        [SerializeField] private float maxOffset;
 
         private void Start() {
             CreateMap();
@@ -30,39 +30,110 @@ namespace de.officeryoda {
 
             for(int x = 0; x < mapSize.x; x++) {
                 for(int y = 0; y < mapSize.y; y++) {
+                    Vector2 randomOffset = new(Random.Range(-maxOffset, maxOffset), Random.Range(-maxOffset, maxOffset));
                     MapPoint point = Instantiate(pointPrefab, transform);
-                    point.transform.position = new Vector2(x, y) * spacing + offset;
+                    point.transform.position = new Vector2(x, y) * spacing + offset + randomOffset;
 
                     mapPoints[x, y] = point;
                 }
             }
 
             AssignNeighbours(mapPoints);
+            AssignIntermediatePoints(mapPoints);
         }
 
         private void AssignNeighbours(MapPoint[,] mapPoints) {
             int[] dx = { -1, 0, 1, 1, 1, 0, -1, -1 };
             int[] dy = { -1, -1, -1, 0, 1, 1, 1, 0 };
 
-            for(int x = 0; x < mapSize.x; x++) {
-                for(int y = 0; y < mapSize.y; y++) {
+            // Point between four MapPoints
+            for(int x = 0; x < mapSize.x - 1; x++) {
+                for(int y = 0; y < mapSize.y - 1; y++) {
                     MapPoint point = mapPoints[x, y];
-                    HashSet<MapPoint> neighbours = new();
+                    MapPoint[] neighbours = new MapPoint[8];
 
                     for(int i = 0; i < 8; i++) {
                         int nx = x + dx[i];
                         int ny = y + dy[i];
 
                         if(nx >= 0 && nx < mapSize.x && ny >= 0 && ny < mapSize.y) {
-                            neighbours.Add(mapPoints[nx, ny]);
+                            neighbours[i] = mapPoints[nx, ny];
                         } else {
-                            neighbours.Add(point);
+                            neighbours[i] = point;
                         }
-                    }
 
-                    point.neighbours = neighbours.ToList();
+                        point.neighbours = neighbours;
+                    }
                 }
             }
+        }
+
+        private void AssignIntermediatePoints(MapPoint[,] mapPoints) {
+            int[] dx = { -1, 0, 1, 1, 1, 0, -1, -1 };
+            int[] dy = { -1, -1, -1, 0, 1, 1, 1, 0 };
+
+            // Point between four MapPoints
+            // P   P
+            //   i
+            // P   P
+            for(int x = 0; x < mapSize.x - 1; x++) {
+                for(int y = 0; y < mapSize.y - 1; y++) {
+
+                    MapPoint bl = mapPoints[x, y];
+                    MapPoint br = mapPoints[x + 1, y];
+                    MapPoint tl = mapPoints[x, y + 1];
+                    MapPoint tr = mapPoints[x + 1, y + 1];
+
+                    Vector2 intermediate = IntermediatePoint(bl, br, tl, tr);
+
+                    bl.neighbourPoints[4] = intermediate;
+                    br.neighbourPoints[6] = intermediate;
+                    tr.neighbourPoints[2] = intermediate;
+                    tr.neighbourPoints[0] = intermediate;
+                }
+            }
+
+            // Point between two points horizontal
+            // P i P
+            for(int x = 0; x < mapSize.x - 1; x++) {
+                for(int y = 0; y < mapSize.y; y++) {
+
+                    MapPoint left = mapPoints[x, y];
+                    MapPoint right = mapPoints[x + 1, y];
+
+                    Vector2 intermediate = IntermediatePoint(left, right);
+
+                    left.neighbourPoints[3] = intermediate;
+                    right.neighbourPoints[7] = intermediate;
+                }
+            }
+
+            // Point between two points vertical
+            // P
+            // i
+            // P
+            for(int x = 0; x < mapSize.x; x++) {
+                for(int y = 0; y < mapSize.y - 1; y++) {
+
+                    MapPoint bot = mapPoints[x, y];
+                    MapPoint top = mapPoints[x, y + 1];
+
+                    Vector2 intermediate = IntermediatePoint(top, bot);
+
+                    bot.neighbourPoints[5] = intermediate;
+                    top.neighbourPoints[1] = intermediate;
+                }
+            }
+        }
+
+
+        private Vector2 IntermediatePoint(params MapPoint[] points) {
+            Vector3 sum = Vector2.zero;
+            foreach(MapPoint point in points) {
+                sum += point.transform.position;
+            }
+
+            return new Vector2(sum.x, sum.y) / points.Length;
         }
 
         private void OnValidate() {
