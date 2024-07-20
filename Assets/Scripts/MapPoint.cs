@@ -42,10 +42,10 @@ namespace de.officeryoda {
         private void ContributeToBoundary(ref HashSet<Vector3> borderPoints, ref HashSet<MapPoint> seenPoints) {
             // Finding possible edge points
             List<Vector3> borderCandidates = new();
-            foreach(MapPoint neighbour in neighbours) {
+            for(int i = 0; i < neighbours.Length; i++) {
+                MapPoint neighbour = neighbours[i];
                 if(neighbour.color == this.color && neighbour != this) continue;
-                Vector2 center = (transform.position + neighbour.transform.position) / 2f;
-                borderCandidates.Add(center);
+                borderCandidates.Add(neighbourPoints[i]);
             }
 
             borderPoints.UnionWith(borderCandidates);
@@ -72,11 +72,6 @@ namespace de.officeryoda {
             for(int i = 0; i < borderPoints.Count; i++) {
                 Vector3 point = borderPoints[i];
                 Gizmos.DrawSphere(point, 0.05f);
-            }
-
-            Gizmos.color = Color.white;
-            foreach(var neighbour in neighbours) {
-                Gizmos.DrawSphere(neighbour.transform.position, 0.05f);
             }
         }
 

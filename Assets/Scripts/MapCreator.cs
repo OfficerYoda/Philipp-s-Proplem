@@ -47,8 +47,8 @@ namespace de.officeryoda {
             int[] dy = { -1, -1, -1, 0, 1, 1, 1, 0 };
 
             // Point between four MapPoints
-            for(int x = 0; x < mapSize.x - 1; x++) {
-                for(int y = 0; y < mapSize.y - 1; y++) {
+            for(int x = 0; x < mapSize.x; x++) {
+                for(int y = 0; y < mapSize.y; y++) {
                     MapPoint point = mapPoints[x, y];
                     MapPoint[] neighbours = new MapPoint[8];
 
@@ -69,8 +69,12 @@ namespace de.officeryoda {
         }
 
         private void AssignIntermediatePoints(MapPoint[,] mapPoints) {
-            int[] dx = { -1, 0, 1, 1, 1, 0, -1, -1 };
-            int[] dy = { -1, -1, -1, 0, 1, 1, 1, 0 };
+            /*
+             * Array index-positions
+             * 6 5 4
+             * 7 x 3
+             * 0 1 2
+             */
 
             // Point between four MapPoints
             // P   P
@@ -88,7 +92,7 @@ namespace de.officeryoda {
 
                     bl.neighbourPoints[4] = intermediate;
                     br.neighbourPoints[6] = intermediate;
-                    tr.neighbourPoints[2] = intermediate;
+                    tl.neighbourPoints[2] = intermediate;
                     tr.neighbourPoints[0] = intermediate;
                 }
             }
@@ -123,6 +127,37 @@ namespace de.officeryoda {
                     bot.neighbourPoints[5] = intermediate;
                     top.neighbourPoints[1] = intermediate;
                 }
+            }
+
+            // Handle Edge Points
+            // Top + Bottom Edge
+            for(int x = 0; x < mapSize.x; x++) {
+                MapPoint top = mapPoints[x, mapSize.y - 1];
+                Vector2 topPos = top.transform.position;
+                top.neighbourPoints[4] = topPos;
+                top.neighbourPoints[5] = topPos;
+                top.neighbourPoints[6] = topPos;
+
+                MapPoint bot = mapPoints[x, 0];
+                Vector2 botPos = bot.transform.position;
+                bot.neighbourPoints[0] = botPos;
+                bot.neighbourPoints[1] = botPos;
+                bot.neighbourPoints[2] = botPos;
+            }
+
+            // Left + Right Edge
+            for(int y = 0; y < mapSize.y; y++) {
+                MapPoint left = mapPoints[0, y];
+                Vector2 leftPos = left.transform.position;
+                left.neighbourPoints[6] = leftPos;
+                left.neighbourPoints[7] = leftPos;
+                left.neighbourPoints[0] = leftPos;
+
+                MapPoint right = mapPoints[mapSize.x - 1, y];
+                Vector2 rightPos = right.transform.position;
+                right.neighbourPoints[4] = rightPos;
+                right.neighbourPoints[3] = rightPos;
+                right.neighbourPoints[2] = rightPos;
             }
         }
 
